@@ -13,22 +13,12 @@ void Pluto::drawWatchFace()
 
 void Pluto::drawTime()
 {
-    display.setFont(&DSEG7_Classic_Bold_25);
-    display.setCursor(5, 53 + 5);
-    // int displayHour;
-    // if(HOUR_12_24==12){
-    //   displayHour = ((currentTime.Hour+11)%12)+1;
-    // } else {
-    //   displayHour = currentTime.Hour;
-    // }
-    // if(displayHour < 10){
-    //     display.print("0");
-    // }
+    display.setFont(&DSEG7_Classic_Regular_39);
+    display.setCursor(30, 70);
     if (currentTime.Hour < 10)
     {
         display.print("0");
     }
-    // display.print(displayHour);
     display.print(currentTime.Hour);
     display.print(":");
     if (currentTime.Minute < 10)
@@ -40,47 +30,26 @@ void Pluto::drawTime()
 
 void Pluto::drawDate()
 {
-    // display.setFont(&Seven_Segment10pt7b);
-
-    // int16_t  x1, y1;
-    // uint16_t w, h;
-
-    // String dayOfWeek = dayStr(currentTime.Wday);
-    // display.getTextBounds(dayOfWeek, 5, 85, &x1, &y1, &w, &h);
-    // if(currentTime.Wday == 4){
-    //     w = w - 5;
-    // }
-    // display.setCursor(85 - w, 85);
-    // display.println(dayOfWeek);
-
-    // String month = monthShortStr(currentTime.Month);
-    // display.getTextBounds(month, 60, 110, &x1, &y1, &w, &h);
-    // display.setCursor(85 - w, 110);
-    // display.println(month);
-
     display.setFont(&DSEG7_Classic_Bold_25);
-    display.setCursor(5, 120);
+    display.setCursor(45, 130);
     if (currentTime.Day < 10)
     {
         display.print("0");
     }
     display.print(currentTime.Day);
-    display.print("/");
+    display.print(" -");
 
-    // display.setCursor(5, 150);
-    // display.println(tmYearToCalendar(currentTime.Year));// offset from 1970, since year is stored in uint8_t
-    display.setCursor(5, 150);
     if (currentTime.Month < 10)
     {
         display.print("0");
     }
-    display.print(currentTime.Month);
+    display.println(currentTime.Month);
 }
 
 void Pluto::drawBattery()
 {
     display.setFont(&Seven_Segment10pt7b);
-    display.setCursor(35, 190);
+    display.setCursor(150, 190);
 
     // int8_t batteryLevel = 0;
     float VBAT = getBatteryVoltage();
